@@ -69,6 +69,8 @@ export default class AdminBody extends Component {
 
   _renderDetailPanel() {
     const { reviews } = this.props;
+    const reviewsForSelectedEmployee = reviews
+        .filter((review) => this.state.selectedEmployeeId === review.employeeId);
 
     return (
       this.state.selectedEmployeeId ?
@@ -96,8 +98,8 @@ export default class AdminBody extends Component {
           {this._renderEditPanel()}
         </ListGroupItem>
         {
-          reviews.length > 0 ?
-            <ReviewList reviews={reviews}/>
+          reviewsForSelectedEmployee.length > 0 ?
+            <ReviewList reviews={reviewsForSelectedEmployee}/>
           :
           <p>There are no reviews...</p>
         }

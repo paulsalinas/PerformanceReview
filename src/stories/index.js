@@ -56,18 +56,26 @@ storiesOf('AdminBody', module)
       ]}
       reviews={[
         {
-          id: '1',
-          employeeId: '1',
           grade:'Met Expectations',
           notes:'He\'s a bad employee',
-          date: new Date(2016, 10, 4)
+          date: new Date(2016, 10, 4),
+          feedback: 'terrible review',
+          employeeId: '1',
+          employee: {
+            firstName: 'Paul',
+            lastName: 'Salinas'
+          }
         },
         {
-          id: '2',
-          employeeId: '1',
           grade:'Exceeded Expectations',
           notes:'Better!',
-          date: new Date(2016, 9, 4)
+          date: new Date(2016, 9, 4),
+          feedback: 'terrible review',
+          employeeId: '1',
+          employee: {
+            firstName: 'Michael',
+            lastName: 'Ciufo'
+          }
         }
       ]}
     />
@@ -89,7 +97,12 @@ storiesOf('ReviewRow', module)
       review={{
         grade:'Met Expectations',
         notes:'He\'s a bad employee',
-        date: new Date(2016, 10, 4)
+        date: new Date(2016, 10, 4),
+        feedback: 'terrible review',
+        employee: {
+          firstName: 'Paul',
+          lastName: 'Salinas'
+        }
       }}
     />
   ));
@@ -101,12 +114,22 @@ storiesOf('ReviewList', module)
         {
           grade:'Met Expectations',
           notes:'He\'s a bad employee',
-          date: new Date(2016, 10, 4)
+          date: new Date(2016, 10, 4),
+          feedback: 'terrible review',
+          employee: {
+            firstName: 'Paul',
+            lastName: 'Salinas'
+          }
         },
         {
           grade:'Exceeded Expectations',
           notes:'Better!',
-          date: new Date(2016, 9, 4)
+          date: new Date(2016, 9, 4),
+          feedback: 'terrible review',
+          employee: {
+            firstName: 'Michael',
+            lastName: 'Ciufo'
+          }
         }
       ]}
     />
