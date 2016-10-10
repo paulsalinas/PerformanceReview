@@ -50,7 +50,7 @@ export default class AdminBody extends Component {
             <Col md={5}>
               <ListGroup>
                 {
-                  this.state.showAdd ?
+                  this.state.showAdd || employees.length === 0 ?
                     <ListGroupItem header="Add New Employee">
                       <Well>
                         <EmployeeForm />
@@ -71,6 +71,8 @@ export default class AdminBody extends Component {
     const { reviews } = this.props;
     const reviewsForSelectedEmployee = reviews
         .filter((review) => this.state.selectedEmployeeId === review.employeeId);
+
+
 
     return (
       this.state.selectedEmployeeId ?

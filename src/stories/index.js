@@ -47,6 +47,9 @@ storiesOf('EmployeeList', module)
   ))
 
 storiesOf('AdminBody', module)
+  .add('Empty', () =>(
+    <AdminBody employees={[]} reviews={[]}/ >
+  ))
   .add('With Clients', () => (
     <AdminBody
       employees={[

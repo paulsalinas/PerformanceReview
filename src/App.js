@@ -3,6 +3,7 @@ import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import logo from './logo.svg';
 import './App.css';
+import AdminBody from './AdminBody';
 
 class App extends Component {
   _renderNav() {
@@ -10,19 +11,12 @@ class App extends Component {
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">React-Bootstrap</a>
+            <a href="#">Performance Review</a>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-          <NavItem eventKey={1} href="#">Link</NavItem>
-          <NavItem eventKey={2} href="#">Link</NavItem>
-          <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-            <MenuItem eventKey={3.1}>Action</MenuItem>
-            <MenuItem eventKey={3.2}>Another action</MenuItem>
-            <MenuItem eventKey={3.3}>Something else here</MenuItem>
-            <MenuItem divider />
-            <MenuItem eventKey={3.3}>Separated link</MenuItem>
-          </NavDropdown>
+          <NavItem eventKey={1} href="#">Admin</NavItem>
+          <NavItem eventKey={2} href="#">User</NavItem>
         </Nav>
       </Navbar>
     )
@@ -30,15 +24,41 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
         { this._renderNav() }
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+        <div style={{display: 'flex', justifyContent:'center'}}>
+          <AdminBody
+            employees={[
+              { id: '1', firstName: 'Paul', lastName: 'Salinas'},
+              { id: '2', firstName: 'Jeffrey', lastName: 'Macutay'},
+              { id: '3', firstName: 'Michael', lastName: 'Ciufo'},
+            ]}
+            reviews={[
+              {
+                grade:'Met Expectations',
+                notes:'He\'s a bad employee',
+                date: new Date(2016, 10, 4),
+                feedback: 'terrible review',
+                employeeId: '1',
+                employee: {
+                  firstName: 'Paul',
+                  lastName: 'Salinas'
+                }
+              },
+              {
+                grade:'Exceeded Expectations',
+                notes:'Better!',
+                date: new Date(2016, 9, 4),
+                feedback: 'terrible review',
+                employeeId: '1',
+                employee: {
+                  firstName: 'Michael',
+                  lastName: 'Ciufo'
+                }
+              }
+            ]}
+          />
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
       </div>
     );
   }
