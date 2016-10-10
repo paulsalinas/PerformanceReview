@@ -1,0 +1,113 @@
+import React from 'react';
+import { storiesOf, action, linkTo } from '@kadira/storybook';
+import Button from './Button';
+import Welcome from './Welcome';
+import EmployeeRow from '../EmployeeRow';
+import EmployeeList from '../EmployeeList';
+import AdminBody from '../AdminBody';
+import EmployeeForm from '../EmployeeForm';
+import ReviewForm from '../ReviewForm';
+import ReviewRow from '../ReviewRow';
+import ReviewList from '../ReviewList'
+
+storiesOf('Welcome', module)
+  .add('to Storybook', () => (
+    <Welcome showApp={linkTo('Button')}/>
+  ));
+
+storiesOf('Button', module)
+  .add('with text', () => (
+    <Button onClick={action('clicked')}>Hello Button</Button>
+  ))
+  .add('with some emoji', () => (
+    <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>
+  ));
+
+storiesOf('EmployeeRow', module)
+  .add('not selected', () => (
+    <EmployeeRow employee={{ firstName: 'Paul', lastName: 'Salinas'}}/>
+  ))
+  .add('selected', () => (
+    <EmployeeRow
+      employee={{ firstName: 'Should be', lastName: 'Selected'}}
+      selected={ true }
+    />
+  ))
+
+storiesOf('EmployeeList', module)
+  .add('multiple employees', () => (
+    <EmployeeList
+      employees={[
+        { id: '1', firstName: 'Paul', lastName: 'Salinas'},
+        { id: '2', firstName: 'Jeffrey', lastName: 'Macutay'},
+        { id: '3', firstName: 'Michael', lastName: 'Ciufo'},
+      ]}
+      selectedId={'1'}
+    />
+  ))
+
+storiesOf('AdminBody', module)
+  .add('With Clients', () => (
+    <AdminBody
+      employees={[
+        { id: '1', firstName: 'Paul', lastName: 'Salinas'},
+        { id: '2', firstName: 'Jeffrey', lastName: 'Macutay'},
+        { id: '3', firstName: 'Michael', lastName: 'Ciufo'},
+      ]}
+      reviews={[
+        {
+          id: '1',
+          employeeId: '1',
+          grade:'Met Expectations',
+          notes:'He\'s a bad employee',
+          date: new Date(2016, 10, 4)
+        },
+        {
+          id: '2',
+          employeeId: '1',
+          grade:'Exceeded Expectations',
+          notes:'Better!',
+          date: new Date(2016, 9, 4)
+        }
+      ]}
+    />
+  ))
+
+storiesOf('EmployeeForm', module)
+  .add('', () => (
+    <EmployeeForm/>
+  ))
+
+storiesOf('ReviewForm', module)
+  .add('', () => (
+    <ReviewForm/>
+  ))
+
+storiesOf('ReviewRow', module)
+  .add('', () => (
+    <ReviewRow
+      review={{
+        grade:'Met Expectations',
+        notes:'He\'s a bad employee',
+        date: new Date(2016, 10, 4)
+      }}
+    />
+  ));
+
+storiesOf('ReviewList', module)
+  .add('', () => (
+    <ReviewList
+      reviews={[
+        {
+          grade:'Met Expectations',
+          notes:'He\'s a bad employee',
+          date: new Date(2016, 10, 4)
+        },
+        {
+          grade:'Exceeded Expectations',
+          notes:'Better!',
+          date: new Date(2016, 9, 4)
+        }
+      ]}
+    />
+  ));
