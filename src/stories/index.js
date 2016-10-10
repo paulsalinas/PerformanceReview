@@ -90,6 +90,9 @@ storiesOf('ReviewForm', module)
   .add('', () => (
     <ReviewForm/>
   ))
+  .add('with default values', () => (
+    <ReviewForm grade='Exceeded Expectations' notes='terrible'/>
+  ))
 
 storiesOf('ReviewRow', module)
   .add('', () => (

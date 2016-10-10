@@ -3,19 +3,28 @@ import { FormGroup, FormControl,Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
-export default class EmployeeForm extends Component {
+export default class ReviewForm extends Component {
   constructor(props) {
     super(props);
+    const { grade, notes } = this.props;
+
     this.state = {
-      review: '',
+      grade: grade ? grade : '',
+      notes: notes ? notes : ''
     }
   }
 
   render() {
+
     return(
       <form>
         <FormGroup controlId="Grade">
-          <FormControl componentClass="select" placeholder="Grade">
+          <FormControl
+            value={this.state.grade}
+            componentClass="select"
+            placeholder="Grade"
+            onChange={this._gradeChange.bind(this)}
+          >
             <option value="Met Expectations">Met Expectations</option>
             <option value="Exceeded Expectations">Exceeded Expectations</option>
             <option value="Failed Expectations">Failed Expectations</option>
@@ -23,6 +32,7 @@ export default class EmployeeForm extends Component {
         </FormGroup>
         <FormGroup controlId="Notes" >
           <FormControl
+            value={this.state.notes}
             componentClass="textarea"
             placeholder="Enter Notes Here"
             onChange={this._reviewChange.bind(this)}
@@ -38,7 +48,17 @@ export default class EmployeeForm extends Component {
       Object.assign(
         {},
         this.state,
-        { review: e.target.value }
+        { notes: e.target.value }
+      )
+    );
+  }
+
+  _gradeChange(e) {
+    this.setState(
+      Object.assign(
+        {},
+        this.state,
+        { grade: e.target.value }
       )
     );
   }

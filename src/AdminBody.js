@@ -28,7 +28,7 @@ export default class AdminBody extends Component {
     this.state = {
       showAdd: false,
       selectedEmployeeId: null,
-      toolbarShow: null,
+      toolbarShow: null
     };
   }
 
