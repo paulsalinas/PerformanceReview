@@ -49,6 +49,7 @@ export default class AdminRemoteContainer extends Component {
           reviews={reviews}
           onAddEmployee={this._addEmployee.bind(this)}
           onUpdateEmployee={this._updateEmployee.bind(this)}
+          onDeleteEmployee={this._deleteEmployee.bind(this)}
         />
     );
   }
@@ -80,6 +81,30 @@ export default class AdminRemoteContainer extends Component {
                   :
                   employee
                 )
+           }
+        )
+      )
+    );
+  }
+
+  _deleteEmployee(objectId) {
+    var myHeaders = new Headers({'X-Parse-Application-Id': APPLICATION_ID });
+
+    var options = {
+      method: 'DELETE',
+      headers: myHeaders
+    };
+
+    fetch(`${EMPLOYEE_URL}/${objectId}`, options)
+      .then((response) => response.json())
+      .then((data) =>
+        this.setState(
+          Object.assign(
+            {},
+            this.state,
+            {
+              employees: this.state.employees
+                .filter((employee) => employee.objectId !== objectId)
            }
         )
       )

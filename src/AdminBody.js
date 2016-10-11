@@ -73,11 +73,15 @@ export default class AdminBody extends Component {
   }
 
   _renderDetailPanel() {
-    const { reviews } = this.props;
+    const { reviews, onDeleteEmployee } = this.props;
+    const { selectedEmployeeId } = this.state;
     const reviewsForSelectedEmployee = reviews
         .filter((review) => this.state.selectedEmployeeId === review.employeeId);
 
-
+    const deleteHandler = (e) => {
+      onDeleteEmployee(selectedEmployeeId)
+      this.setState(Object.assign({}, this.state, { selectedEmployeeId: null }));
+    };
 
     return (
       this.state.selectedEmployeeId ?
@@ -97,7 +101,10 @@ export default class AdminBody extends Component {
               <Glyphicon style={{ marginRight: 5 }} glyph="plus"/>
               Add Review
             </Button>
-            <Button bsStyle={'danger'}>
+            <Button
+              bsStyle={'danger'}
+              onClick={deleteHandler}
+            >
               <Glyphicon style={{ marginRight: 5 }} glyph="trash" />
               Delete Employee
             </Button>
