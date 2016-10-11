@@ -33,7 +33,12 @@ export default class AdminBody extends Component {
   }
 
   render() {
-    const { employees, reviews, onAddEmployee } = this.props;
+    const {
+      employees,
+      reviews,
+      onAddEmployee,
+      onUpdateEmployee
+     } = this.props;
 
     return (
       <Panel style={{ width: 800 }}>
@@ -116,7 +121,7 @@ export default class AdminBody extends Component {
   }
 
   _renderEditPanel() {
-    const { employees } = this.props;
+    const { employees, onUpdateEmployee } = this.props;
     const selectedEmployee = employees
       .find((employee) => employee.objectId === this.state.selectedEmployeeId);
 
@@ -133,6 +138,11 @@ export default class AdminBody extends Component {
             <EmployeeForm
               firstName={selectedEmployee.firstName}
               lastName={selectedEmployee.lastName}
+              onDone={(firstName, lastName) => onUpdateEmployee(
+                selectedEmployee.objectId,
+                firstName,
+                lastName
+              )}
             />
           </Well>
         );
