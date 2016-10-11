@@ -46,7 +46,7 @@ export default class ReviewRow extends Component {
               style={{marginLeft: 5}}
               onClick={() => this._onClickEditHandler()}
             >
-              <Glyphicon style={{ marginRight: 5 }} glyph="pencil" />
+              <Glyphicon glyph="pencil" />
             </Button>
           </h4>
 
