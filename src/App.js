@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import AdminRemoteContainer from './AdminRemoteContainer';
 import LoginRemoteContainer from './LoginRemoteContainer';
+import FeedbackRemoteContainer from './FeedbackRemoteContainer';
 
 
 const MainNav = () => (
@@ -36,13 +37,17 @@ const AdminView = () => (
   </MainContainer>
 );
 
-
 const LoginView = () => (
   <MainContainer>
     <LoginRemoteContainer/>
   </MainContainer>
 );
 
+const FeedbackView = ({params}) => (
+  <MainContainer>
+    <FeedbackRemoteContainer employeeId={params.employeeId}/>
+  </MainContainer>
+);
 
 class App extends Component {
   render() {
@@ -50,6 +55,7 @@ class App extends Component {
       <Router history={browserHistory}>
         <Route path="/" component={AdminView}/>
         <Route path="/login" component={LoginView}/>
+        <Route path="/feedback/:employeeId" component={FeedbackView}/>
       </Router>
     );
   }
