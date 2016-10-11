@@ -43,6 +43,8 @@ export default class AdminRemoteContainer extends Component {
 
   render() {
     const {employees, reviews} = this.state;
+    console.log(employees);
+    console.log(reviews);
     return (
         <AdminBody
           employees={employees}
@@ -50,6 +52,7 @@ export default class AdminRemoteContainer extends Component {
           onAddEmployee={this._addEmployee.bind(this)}
           onUpdateEmployee={this._updateEmployee.bind(this)}
           onDeleteEmployee={this._deleteEmployee.bind(this)}
+          onAddReview={this._addReview.bind(this)}
         />
     );
   }
@@ -135,6 +138,39 @@ export default class AdminRemoteContainer extends Component {
                 objectId: data.objectId,
                 firstName,
                 lastName
+              })
+           }
+        )
+      )
+    );
+  }
+
+  _addReview(grade, notes, employeeId) {
+    var myHeaders = new Headers({'X-Parse-Application-Id': APPLICATION_ID });
+
+    var options = {
+      method: 'POST',
+      headers: myHeaders,
+      body: JSON.stringify({
+        grade,
+        notes,
+        employeeId
+      })
+    };
+
+    fetch(REVIEW_URL, options)
+      .then((response) => response.json())
+      .then((data) =>
+        this.setState(
+          Object.assign(
+            {},
+            this.state,
+            {
+              reviews: this.state.reviews.concat({
+                objectId: data.objectId,
+                grade,
+                notes,
+                employeeId
               })
            }
         )

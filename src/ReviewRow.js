@@ -28,6 +28,7 @@ export default class ReviewRow extends Component {
     return (
 
         editing ?
+
         <ListGroupItem>
           <Button
             style={{marginLeft: 5, marginBottom: 10}}
@@ -37,7 +38,9 @@ export default class ReviewRow extends Component {
           </Button>
           <ReviewForm grade={grade} notes={notes}/>
         </ListGroupItem>
+
         :
+
         <ListGroupItem>
           <h4>
             {grade}
@@ -50,12 +53,22 @@ export default class ReviewRow extends Component {
           </h4>
 
           <p>{notes}</p>
-          <p>
-            <span style={{fontWeight: 'bold'}}>
-              {employee.lastName + ', ' + employee.firstName + ': '}
-            </span>
-            {feedback}
-          </p>
+
+          {
+
+            feedback ?
+              <p>
+                <span style={{fontWeight: 'bold'}}>
+                  {employee.lastName + ', ' + employee.firstName + ': '}
+                </span>
+                {feedback}
+              </p>
+
+            :
+            
+            null
+          }
+
         </ListGroupItem>
     );
   }

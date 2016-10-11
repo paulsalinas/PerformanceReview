@@ -9,18 +9,21 @@ export default class ReviewForm extends Component {
     const { grade, notes } = this.props;
 
     this.state = {
-      grade: grade ? grade : '',
+      grade: grade ? grade : 'Met Expectations',
       notes: notes ? notes : ''
     }
   }
 
   render() {
+    const { onDone } = this.props;
+    const { grade, notes } = this.state;
+    console.log(grade);
 
     return(
-      <form>
+      <div>
         <FormGroup controlId="Grade">
           <FormControl
-            value={this.state.grade}
+            value={grade}
             componentClass="select"
             placeholder="Grade"
             onChange={this._gradeChange.bind(this)}
@@ -32,14 +35,14 @@ export default class ReviewForm extends Component {
         </FormGroup>
         <FormGroup controlId="Notes" >
           <FormControl
-            value={this.state.notes}
+            value={notes}
             componentClass="textarea"
             placeholder="Enter Notes Here"
             onChange={this._reviewChange.bind(this)}
           />
         </FormGroup>
-        <Button>Done</Button>
-      </form>
+        <Button onClick={(e) => onDone(grade, notes)}>Done</Button>
+      </div>
     );
   }
 

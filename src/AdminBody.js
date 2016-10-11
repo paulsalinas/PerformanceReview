@@ -73,10 +73,19 @@ export default class AdminBody extends Component {
   }
 
   _renderDetailPanel() {
-    const { reviews, onDeleteEmployee } = this.props;
+    const { reviews, onDeleteEmployee, employees } = this.props;
     const { selectedEmployeeId } = this.state;
+
+    const selectedEmployee = employees
+      .find((e) => e.objectId === selectedEmployeeId);
+
     const reviewsForSelectedEmployee = reviews
-        .filter((review) => this.state.selectedEmployeeId === review.employeeId);
+      .filter((review) => this.state.selectedEmployeeId === review.employeeId)
+      .map((review) => ({
+        ...review,
+        employee: selectedEmployee
+        })
+      );
 
     const deleteHandler = (e) => {
       onDeleteEmployee(selectedEmployeeId)
@@ -113,7 +122,9 @@ export default class AdminBody extends Component {
         </ListGroupItem>
         {
           reviewsForSelectedEmployee.length > 0 ?
-            <ReviewList reviews={reviewsForSelectedEmployee}/>
+            <ReviewList
+              reviews={reviewsForSelectedEmployee}
+            />
           :
           <p>There are no reviews...</p>
         }
@@ -128,20 +139,30 @@ export default class AdminBody extends Component {
   }
 
   _renderEditPanel() {
-    const { employees, onUpdateEmployee } = this.props;
+    const { employees, onUpdateEmployee, onAddReview } = this.props;
+    const { selectedEmployeeId } = this.state;
     const selectedEmployee = employees
-      .find((employee) => employee.objectId === this.state.selectedEmployeeId);
+      .find((employee) => employee.objectId === selectedEmployeeId);
+
     const updateHandler = (firstName, lastName) => onUpdateEmployee(
       selectedEmployee.objectId,
       firstName,
       lastName
     );
 
+    const addReviewHandler = (grade, notes) => onAddReview(
+      grade,
+      notes,
+      selectedEmployeeId
+    );
+
     switch (this.state.toolbarShow) {
       case SHOW_ADD_REVIEW:
         return (
           <Well style={{ marginTop: 10}}>
-            <ReviewForm />
+            <ReviewForm
+              onDone={addReviewHandler}
+            />
           </Well>
         );
       case SHOW_EDIT_EMPLOYEE:
