@@ -43,8 +43,6 @@ export default class AdminRemoteContainer extends Component {
 
   render() {
     const {employees, reviews} = this.state;
-    console.log(employees);
-    console.log(reviews);
     return (
         <AdminBody
           employees={employees}

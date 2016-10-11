@@ -35,9 +35,7 @@ export default class AdminBody extends Component {
   render() {
     const {
       employees,
-      reviews,
-      onAddEmployee,
-      onUpdateEmployee
+      onAddEmployee
      } = this.props;
 
     return (
@@ -210,7 +208,6 @@ export default class AdminBody extends Component {
   }
 
   _selectEmployeeHandler(employeeId) {
-    console.log(employeeId);
     this.setState(
       Object.assign(
         {},

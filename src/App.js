@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import logo from './logo.svg';
 import './App.css';
 import AdminRemoteContainer from './AdminRemoteContainer';
 

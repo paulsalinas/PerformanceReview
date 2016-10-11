@@ -9,7 +9,6 @@ export default class EmployeeList extends Component {
 
     const {
       employees,
-      mode,
       onClickAdd,
       onClickEmployee,
       selectedId

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { ListGroupItem, Glyphicon } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import logo from './logo.svg';
 import './App.css';
 
 export default class EmployeeRow extends Component {

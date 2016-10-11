@@ -17,7 +17,6 @@ export default class ReviewForm extends Component {
   render() {
     const { onDone } = this.props;
     const { grade, notes } = this.state;
-    console.log(grade);
 
     return(
       <div>

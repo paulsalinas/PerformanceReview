@@ -17,12 +17,10 @@ export default class ReviewRow extends Component {
     const {
       grade,
       notes,
-      date,
       feedback,
       employee
     } = this.props.review;
 
-    const { onClickEdit } = this.props;
     const { editing } = this.state;
 
     return (
@@ -65,7 +63,7 @@ export default class ReviewRow extends Component {
               </p>
 
             :
-            
+
             null
           }
 
