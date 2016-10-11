@@ -35,8 +35,15 @@ export default class LoginRemoteContainer extends Component {
 
     fetch(this._queryUri(firstName, lastName), options)
       .then((response) => response.json())
-      .then((data) => {
-        console.log(data)
+      .then(({results}) => {
+        if (results.length === 0) {
+          alert('this employee does not exists');
+          return;
+        }
+
+        // redirect to feedback route
+        window.location.href = '/feedback/' + results[0].objectId;
+
       });
   }
 }
