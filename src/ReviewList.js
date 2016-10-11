@@ -10,7 +10,14 @@ export default class ReviewList extends Component {
 
     return (
         <ListGroup>
-          { reviews.map((review) =>(<ReviewRow review={review}/>)) }
+          {
+            reviews.map((review) =>
+              <ReviewRow
+                key={review.objectId}
+                review={review}
+              />
+            )
+          }
         </ListGroup>
     );
   }
