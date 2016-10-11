@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormGroup, FormControl } from 'react-bootstrap';
+import { FormGroup, FormControl, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
@@ -36,28 +36,33 @@ export default class EmployeeForm extends Component {
   }
 
   render() {
+    const { onDone } = this.props;
+    const { firstName, lastName } = this.state;
+
     return(
-      <form>
+      <div>
         <FormGroup controlId="firstName" >
           <FormControl
             type="text"
-            value={this.state.firstName}
+            value={firstName}
             placeholder="First Name"
-            onChange={this.firstNameChange}
+            onChange={this.firstNameChange.bind(this)}
           />
           <FormControl.Feedback />
         </FormGroup>
         <FormGroup controlId="lastName" >
           <FormControl
             type="text"
-            value={this.state.lastName}
+            value={lastName}
             placeholder="Last Name"
-            onChange={this.lastNameChange}
+            onChange={this.lastNameChange.bind(this)}
           />
           <FormControl.Feedback />
         </FormGroup>
-        <button className='btn btn-default'>Done</button>
-      </form>
+        <Button onClick={(e) => onDone(firstName, lastName)}>
+          Done
+        </Button>
+      </div>
     );
   }
 

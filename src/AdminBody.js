@@ -33,7 +33,7 @@ export default class AdminBody extends Component {
   }
 
   render() {
-    const { employees, reviews } = this.props;
+    const { employees, reviews, onAddEmployee } = this.props;
 
     return (
       <Panel style={{ width: 800 }}>
@@ -53,7 +53,7 @@ export default class AdminBody extends Component {
                   this.state.showAdd || employees.length === 0 ?
                     <ListGroupItem header="Add New Employee">
                       <Well>
-                        <EmployeeForm />
+                        <EmployeeForm onDone={onAddEmployee}/>
                       </Well>
                     </ListGroupItem>
                   :
@@ -118,7 +118,7 @@ export default class AdminBody extends Component {
   _renderEditPanel() {
     const { employees } = this.props;
     const selectedEmployee = employees
-      .find((employee) => employee.id === this.state.selectedEmployeeId);
+      .find((employee) => employee.objectId === this.state.selectedEmployeeId);
 
     switch (this.state.toolbarShow) {
       case SHOW_ADD_REVIEW:

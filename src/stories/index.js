@@ -38,9 +38,9 @@ storiesOf('EmployeeList', module)
   .add('multiple employees', () => (
     <EmployeeList
       employees={[
-        { id: '1', firstName: 'Paul', lastName: 'Salinas'},
-        { id: '2', firstName: 'Jeffrey', lastName: 'Macutay'},
-        { id: '3', firstName: 'Michael', lastName: 'Ciufo'},
+        { objectId: '1', firstName: 'Paul', lastName: 'Salinas'},
+        { objectId: '2', firstName: 'Jeffrey', lastName: 'Macutay'},
+        { objectId: '3', firstName: 'Michael', lastName: 'Ciufo'},
       ]}
       selectedId={'1'}
     />
@@ -49,32 +49,32 @@ storiesOf('EmployeeList', module)
 storiesOf('AdminBody', module)
   .add('Empty', () =>(
     <AdminBody employees={[]} reviews={[]}/ >
-  ))
-  .add('With Clients', () => (
-    <AdminBody
-      employees={[
-        { id: '1', firstName: 'Paul', lastName: 'Salinas'},
-        { id: '2', firstName: 'Jeffrey', lastName: 'Macutay'},
-        { id: '3', firstName: 'Michael', lastName: 'Ciufo'},
-      ]}
-      reviews={[
-        {
-          grade:'Met Expectations',
-          notes:'He\'s a bad employee',
-          date: new Date(2016, 10, 4),
-          feedback: 'terrible review',
-          employeeId: '1',
-          employee: {
-            firstName: 'Paul',
-            lastName: 'Salinas'
-          }
-        },
-        {
-          grade:'Exceeded Expectations',
-          notes:'Better!',
-          date: new Date(2016, 9, 4),
-          feedback: 'terrible review',
-          employeeId: '1',
+      ))
+      .add('With Clients', () => (
+      <AdminBody
+        employees={[
+          { objectId: '1', firstName: 'Paul', lastName: 'Salinas'},
+          { objectId: '2', firstName: 'Jeffrey', lastName: 'Macutay'},
+          { objectId: '3', firstName: 'Michael', lastName: 'Ciufo'},
+        ]}
+        reviews={[
+          {
+            grade:'Met Expectations',
+            notes:'He\'s a bad employee',
+            date: new Date(2016, 10, 4),
+            feedback: 'terrible review',
+            employeeId: '1',
+            employee: {
+              firstName: 'Paul',
+              lastName: 'Salinas'
+            }
+          },
+          {
+            grade:'Exceeded Expectations',
+            notes:'Better!',
+            date: new Date(2016, 9, 4),
+            feedback: 'terrible review',
+            employeeId: '1',
           employee: {
             firstName: 'Michael',
             lastName: 'Ciufo'

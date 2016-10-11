@@ -36,8 +36,8 @@ export default class EmployeeList extends Component {
             .map((employee) =>
               (<EmployeeRow
                 employee={employee}
-                selected={ selectedId === employee.id }
-                onClickRow={(e) =>  onClickEmployee(employee.id) }
+                selected={ selectedId === employee.objectId }
+                onClickRow={(e) =>  onClickEmployee(employee.objectId) }
                />)
             )
           }
