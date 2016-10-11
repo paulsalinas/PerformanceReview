@@ -8,12 +8,15 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "express": "^4.14.0",
+    "parse-server": "^2.2.22",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.5",
     "react-dom": "^15.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "node ./server/index.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
