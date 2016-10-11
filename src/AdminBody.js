@@ -131,6 +131,11 @@ export default class AdminBody extends Component {
     const { employees, onUpdateEmployee } = this.props;
     const selectedEmployee = employees
       .find((employee) => employee.objectId === this.state.selectedEmployeeId);
+    const updateHandler = (firstName, lastName) => onUpdateEmployee(
+      selectedEmployee.objectId,
+      firstName,
+      lastName
+    );
 
     switch (this.state.toolbarShow) {
       case SHOW_ADD_REVIEW:
@@ -145,11 +150,7 @@ export default class AdminBody extends Component {
             <EmployeeForm
               firstName={selectedEmployee.firstName}
               lastName={selectedEmployee.lastName}
-              onDone={(firstName, lastName) => onUpdateEmployee(
-                selectedEmployee.objectId,
-                firstName,
-                lastName
-              )}
+              onDone={updateHandler}
             />
           </Well>
         );
