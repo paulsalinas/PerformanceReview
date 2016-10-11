@@ -94,8 +94,8 @@ export default class AdminBody extends Component {
 
     return (
       this.state.selectedEmployeeId ?
-      <ListGroup>
-        <ListGroupItem>
+      <div>
+        <Panel>
           <ButtonGroup
             style={{
               display: 'flex',
@@ -119,7 +119,7 @@ export default class AdminBody extends Component {
             </Button>
           </ButtonGroup>
           {this._renderEditPanel()}
-        </ListGroupItem>
+        </Panel>
         {
           reviewsForSelectedEmployee.length > 0 ?
             <ReviewList
@@ -128,7 +128,7 @@ export default class AdminBody extends Component {
           :
           <p>There are no reviews...</p>
         }
-      </ListGroup>
+      </div>
 
       :
 
