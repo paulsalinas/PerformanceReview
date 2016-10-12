@@ -18,10 +18,10 @@ export default class ReviewRow extends Component {
       grade,
       notes,
       feedback,
-      employee
+      employee,
     } = this.props.review;
 
-    const { editing } = this.state;
+    const {editing} = this.state;
 
     return (
 
@@ -34,7 +34,11 @@ export default class ReviewRow extends Component {
           >
             <Glyphicon glyph="menu-left" />
           </Button>
-          <ReviewForm grade={grade} notes={notes}/>
+          <ReviewForm
+            grade={grade}
+            notes={notes}
+            onDone={this._editHandler.bind(this)}
+          />
         </ListGroupItem>
 
         :
@@ -71,11 +75,17 @@ export default class ReviewRow extends Component {
     );
   }
 
+  _editHandler(grade, notes) {
+    const {onEdit} = this.props;
+    onEdit(grade, notes);
+    this.setState(Object.assign({}, this.state, {editing: false}));
+  }
+
   _onClickEditHandler() {
-    this.setState({ editing: true});
+    this.setState({editing: true});
   }
 
   _onClickCancelHandler() {
-    this.setState({ editing: false});
+    this.setState({editing: false});
   }
 }

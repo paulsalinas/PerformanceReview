@@ -5,7 +5,7 @@ import ReviewRow from './ReviewRow'
 
 export default class ReviewList extends Component {
   render() {
-    const { reviews } = this.props;
+    const {reviews, onEdit} = this.props;
 
     return (
         <ListGroup>
@@ -14,6 +14,7 @@ export default class ReviewList extends Component {
               <ReviewRow
                 key={review.objectId}
                 review={review}
+                onEdit={(grade, notes) => onEdit(review.objectId, grade, notes)}
               />
             )
           }

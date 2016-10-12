@@ -71,7 +71,12 @@ export default class AdminBody extends Component {
   }
 
   _renderDetailPanel() {
-    const { reviews, onDeleteEmployee, employees } = this.props;
+    const {
+      reviews,
+      onDeleteEmployee,
+      onUpdateReview,
+      employees,
+    } = this.props;
     const { selectedEmployeeId } = this.state;
 
     const selectedEmployee = employees
@@ -122,6 +127,7 @@ export default class AdminBody extends Component {
           reviewsForSelectedEmployee.length > 0 ?
             <ReviewList
               reviews={reviewsForSelectedEmployee}
+              onEdit={onUpdateReview}
             />
           :
           <p>There are no reviews...</p>

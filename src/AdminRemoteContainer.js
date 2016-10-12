@@ -10,6 +10,8 @@ export default class AdminRemoteContainer extends Component {
   constructor(props) {
     super(props);
 
+    this.header = new Headers({'X-Parse-Application-Id': APPLICATION_ID });
+
     this.state = {
       employees: [],
       reviews: []
@@ -17,11 +19,9 @@ export default class AdminRemoteContainer extends Component {
   }
 
   componentDidMount() {
-    var myHeaders = new Headers({'X-Parse-Application-Id': APPLICATION_ID });
-
     var options = {
       method: 'GET',
-      headers: myHeaders
+      headers: this.header
     };
 
     fetch(EMPLOYEE_URL, options)
@@ -51,16 +51,15 @@ export default class AdminRemoteContainer extends Component {
           onUpdateEmployee={this._updateEmployee.bind(this)}
           onDeleteEmployee={this._deleteEmployee.bind(this)}
           onAddReview={this._addReview.bind(this)}
+          onUpdateReview={this._updateReview.bind(this)}
         />
     );
   }
 
   _updateEmployee(objectId, firstName, lastName) {
-    var myHeaders = new Headers({'X-Parse-Application-Id': APPLICATION_ID });
-
     var options = {
       method: 'PUT',
-      headers: myHeaders,
+      headers: this.header,
       body: JSON.stringify({
         firstName: firstName,
         lastName: lastName,
@@ -89,11 +88,9 @@ export default class AdminRemoteContainer extends Component {
   }
 
   _deleteEmployee(objectId) {
-    var myHeaders = new Headers({'X-Parse-Application-Id': APPLICATION_ID });
-
     var options = {
       method: 'DELETE',
-      headers: myHeaders
+      headers: this.header
     };
 
     fetch(`${EMPLOYEE_URL}/${objectId}`, options)
@@ -113,11 +110,9 @@ export default class AdminRemoteContainer extends Component {
   }
 
   _addEmployee(firstName, lastName) {
-    var myHeaders = new Headers({'X-Parse-Application-Id': APPLICATION_ID });
-
     var options = {
       method: 'POST',
-      headers: myHeaders,
+      headers: this.header,
       body: JSON.stringify({
         firstName: firstName,
         lastName: lastName,
@@ -143,12 +138,41 @@ export default class AdminRemoteContainer extends Component {
     );
   }
 
-  _addReview(grade, notes, employeeId) {
-    var myHeaders = new Headers({'X-Parse-Application-Id': APPLICATION_ID });
+  _updateReview(objectId, grade, notes) {
+    var options = {
+      method: 'PUT',
+      headers: this.header,
+      body: JSON.stringify({
+        grade,
+        notes
+      })
+    };
 
+    fetch(`${REVIEW_URL}/${objectId}`, options)
+      .then((response) => response.json())
+      .then((data) =>
+        this.setState(
+          Object.assign(
+            {},
+            this.state,
+            {
+              reviews: this.state.reviews
+                .map((review) =>
+                  review.objectId === objectId ?
+                  Object.assign({}, review, {grade, notes})
+                  :
+                  review
+                )
+            }
+         )
+        )
+      );
+  }
+
+  _addReview(grade, notes, employeeId) {
     var options = {
       method: 'POST',
-      headers: myHeaders,
+      headers: this.header,
       body: JSON.stringify({
         grade,
         notes,
