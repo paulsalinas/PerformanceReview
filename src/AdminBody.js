@@ -18,9 +18,13 @@ import ReviewForm from './ReviewForm';
 import ReviewList from './ReviewList';
 import './App.css';
 
+// values that describe the top-right toolbar state
 const SHOW_EDIT_EMPLOYEE = 'SHOW_EDIT_EMPLOYEE';
 const SHOW_ADD_REVIEW = 'SHOW_ADD_REVIEW';
 
+// Main presentationalcomponent for the admin view where behavior and data
+// can be 'injected' via props. It contains all components for the admin view.
+// This class probably has too many responsibilities and should be split.
 export default class AdminBody extends Component {
   constructor(props) {
     super(props);
@@ -39,7 +43,7 @@ export default class AdminBody extends Component {
      } = this.props;
 
     return (
-      <Panel style={{ width: 800 }}>
+      <Panel style={{width: 800}}>
         <Grid>
           <Row>
             <Col md={3}>
@@ -70,6 +74,9 @@ export default class AdminBody extends Component {
     );
   }
 
+  // renders the right hand side detail panel based on the 'selectedEmployeeId'
+  // state. Will show the full panel if there's a selection and an instruction
+  // if there isn't
   _renderDetailPanel() {
     const {
       reviews,
@@ -77,7 +84,7 @@ export default class AdminBody extends Component {
       onUpdateReview,
       employees,
     } = this.props;
-    const { selectedEmployeeId } = this.state;
+    const {selectedEmployeeId} = this.state;
 
     const selectedEmployee = employees
       .find((e) => e.objectId === selectedEmployeeId);
@@ -106,18 +113,18 @@ export default class AdminBody extends Component {
             }}
           >
             <Button onClick={(e) => this._setToolBarState(SHOW_EDIT_EMPLOYEE) }>
-              <Glyphicon style={{ marginRight: 5 }} glyph="pencil"/>
+              <Glyphicon style={{marginRight: 5}} glyph="pencil"/>
               Edit Employee
             </Button>
             <Button onClick={(e) => this._setToolBarState(SHOW_ADD_REVIEW)}>
-              <Glyphicon style={{ marginRight: 5 }} glyph="plus"/>
+              <Glyphicon style={{marginRight: 5}} glyph="plus"/>
               Add Review
             </Button>
             <Button
               bsStyle={'danger'}
               onClick={deleteHandler}
             >
-              <Glyphicon style={{ marginRight: 5 }} glyph="trash" />
+              <Glyphicon style={{marginRight: 5}} glyph="trash" />
               Delete Employee
             </Button>
           </ButtonGroup>
@@ -142,9 +149,12 @@ export default class AdminBody extends Component {
     );
   }
 
+  // this renders the 'edit panel' on the top right corner, underneath the
+  // groupings. It renders a particular form or no form based on 'toolbarShow'
+  // state which is determined by the button presses on the button group above it
   _renderEditPanel() {
-    const { employees, onUpdateEmployee, onAddReview } = this.props;
-    const { selectedEmployeeId } = this.state;
+    const {employees, onUpdateEmployee, onAddReview} = this.props;
+    const {selectedEmployeeId} = this.state;
     const selectedEmployee = employees
       .find((employee) => employee.objectId === selectedEmployeeId);
 
@@ -163,7 +173,7 @@ export default class AdminBody extends Component {
     switch (this.state.toolbarShow) {
       case SHOW_ADD_REVIEW:
         return (
-          <Well style={{ marginTop: 10}}>
+          <Well style={{marginTop: 10}}>
             <ReviewForm
               onDone={addReviewHandler}
             />
@@ -171,7 +181,7 @@ export default class AdminBody extends Component {
         );
       case SHOW_EDIT_EMPLOYEE:
         return (
-          <Well  style={{ marginTop: 10}}>
+          <Well  style={{marginTop: 10}}>
             <EmployeeForm
               firstName={selectedEmployee.firstName}
               lastName={selectedEmployee.lastName}
@@ -184,6 +194,10 @@ export default class AdminBody extends Component {
     }
   }
 
+  // sets the state based on tool bar state specified.
+  // if the param is the same as the current toolBarState, clear it instead.
+  // This allows us to clear the toolBarState if the same button is pressed
+  // consecutively
   _setToolBarState(toolBarState) {
     this.setState(
       Object.assign(
@@ -200,6 +214,7 @@ export default class AdminBody extends Component {
     );
   }
 
+  // handles when the 'add employee' button is pressed
   _addEmployeeHandler() {
     this.setState(
       Object.assign(
@@ -213,6 +228,7 @@ export default class AdminBody extends Component {
     );
   }
 
+  // handles when an employee is selected. It needs the employee Id passed to it
   _selectEmployeeHandler(employeeId) {
     this.setState(
       Object.assign(
