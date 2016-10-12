@@ -22,7 +22,7 @@ This app was made with the following:
 
 * the app maintains 3 routes using react-router:
   * /admin - for admin view
-  * /login - to allow the user to navigate to a particular user's feedback page
+  * /login - to allow the user to navigate to a particular user's feedback page by entering 'firstName' and 'lastName'
   * /feedback/:employeeId - the feedback view for the particular employee id
 
 * for each route we have a container component which 'injects' remote datasource behaviours to the inner presentational components
@@ -35,7 +35,7 @@ This app was made with the following:
 * form validation
 * there's some refactoring that needs to be done.
   * ie. AdminBody component is pretty bloated
-* move to a redux architecture 
+* move to a redux architecture
 
 ## Data Model Design
 * Maintain two 'parse' classes or lists
