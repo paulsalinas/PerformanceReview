@@ -31,7 +31,7 @@ This app was made with the following:
   * they also maintain the state for each route
 
 ## TODO
-*  need to add the ability to add other employees to participate in the review
+*  need to add the ability to add other employees to participate in a review
   * Possible solution: show dialog or panel to be able to add employees from an employee table
 * loading indicators during api calls
 * form validation
