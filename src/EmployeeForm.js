@@ -7,7 +7,7 @@ export default class EmployeeForm extends Component {
   constructor(props) {
     super(props);
 
-    const { firstName, lastName } = props;
+    const {firstName, lastName} = props;
 
     this.state = {
       firstName: firstName ? firstName : '',
@@ -30,14 +30,14 @@ export default class EmployeeForm extends Component {
       Object.assign(
         {},
         this.state,
-        { lastName: e.target.value }
+        {lastName: e.target.value}
       )
     );
   }
 
   render() {
-    const { onDone } = this.props;
-    const { firstName, lastName } = this.state;
+    const {onDone} = this.props;
+    const {firstName, lastName} = this.state;
 
     return(
       <div>
@@ -65,5 +65,4 @@ export default class EmployeeForm extends Component {
       </div>
     );
   }
-
 }

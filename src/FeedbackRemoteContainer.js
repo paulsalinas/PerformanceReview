@@ -8,6 +8,9 @@ const EMPLOYEE_URL = DEV_URL + '/employee';
 const REVIEW_URL = DEV_URL + '/review';
 const APPLICATION_ID = 'performanceReview';
 
+
+// injects the 'remote datasource' behavior to it's inner presentational
+// components.
 export default class FeedbackRemoteContainer extends Component {
   constructor(props) {
     super(props);

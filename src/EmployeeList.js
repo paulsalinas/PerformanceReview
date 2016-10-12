@@ -6,7 +6,6 @@ import './App.css';
 
 export default class EmployeeList extends Component {
   render() {
-
     const {
       employees,
       onClickAdd,
