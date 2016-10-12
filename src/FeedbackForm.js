@@ -64,7 +64,6 @@ export default class FeedbackForm extends Component {
             </div>
           :
           <div>
-
             <p><span style={{fontWeight: 'bold'}}>your feedback: </span>{feedback}</p>
             <Button onClick={onEditHandler}>
               Edit
