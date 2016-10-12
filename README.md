@@ -1,5 +1,7 @@
 This is a performance review app that allows the user to manage their employees, their reviews and their feedback.
 
+Check out the [screenshots](https://github.com/paulsalinas/PerformanceReview/tree/master/readme_images)
+
 ## How do you use this?
 * git clone this repo
 * npm install
