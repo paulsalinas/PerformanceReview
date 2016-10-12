@@ -39,6 +39,10 @@ This app was made with the following:
   * ie. AdminBody component is pretty bloated
 * move to a redux architecture
 
+## Assumptions
+* no auth for now
+* no error handling
+
 ## Data Model Design
 * Maintain two 'parse' classes or lists
   * Employees
