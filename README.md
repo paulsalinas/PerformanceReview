@@ -38,6 +38,7 @@ This app was made with the following:
 * there's some refactoring that needs to be done.
   * ie. AdminBody component is pretty bloated
 * move to a redux architecture
+* move URL CONSTANTS to one location and in a separate file
 
 ## Assumptions
 * no auth for now
