@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {FormGroup, FormControl, Button, ControlLabel} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
+// the component should be in editing mode if there's no feedback(undefined).
+// this will prompt the user to put in their feedback.
+// when there's feedback, the user can go back and edit it.
 export default class FeedbackForm extends Component {
   constructor(props) {
     super(props);
