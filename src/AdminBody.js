@@ -22,7 +22,7 @@ import './App.css';
 const SHOW_EDIT_EMPLOYEE = 'SHOW_EDIT_EMPLOYEE';
 const SHOW_ADD_REVIEW = 'SHOW_ADD_REVIEW';
 
-// Main presentationalcomponent for the admin view where behavior and data
+// Main presentational component' for the admin view where behavior and data
 // can be 'injected' via props. It contains all components for the admin view.
 // This class probably has too many responsibilities and should be split.
 export default class AdminBody extends Component {
