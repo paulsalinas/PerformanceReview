@@ -22,6 +22,7 @@ const MainNav = () => (
   </Navbar>
 );
 
+// center the content
 const MainContainer = ({children}) => (
   <div>
     <MainNav />
@@ -49,6 +50,7 @@ const FeedbackView = ({params}) => (
   </MainContainer>
 );
 
+// set up the routing for the app
 class App extends Component {
   render() {
     return (
