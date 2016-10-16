@@ -4,36 +4,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
 export default class EmployeeForm extends Component {
-  constructor(props) {
-    super(props);
-
-    const {firstName, lastName} = props;
-
-    this.state = {
-      firstName: firstName ? firstName : '',
-      lastName: lastName ? lastName : ''
-    }
-  }
-
-  firstNameChange(e) {
-    this.setState(
-      Object.assign(
-        {},
-        this.state,
-        { firstName: e.target.value }
-      )
-    );
-  }
-
-  lastNameChange(e) {
-    this.setState(
-      Object.assign(
-        {},
-        this.state,
-        {lastName: e.target.value}
-      )
-    );
-  }
+  state = {
+    firstName: this.props.firstName ? this.props.firstName : '',
+    lastName: this.props.lastName ? this.props.lastName : ''
+  };
 
   render() {
     const {onDone} = this.props;
@@ -46,7 +20,7 @@ export default class EmployeeForm extends Component {
             type="text"
             value={firstName}
             placeholder="First Name"
-            onChange={this.firstNameChange.bind(this)}
+            onChange={this.firstNameChange}
           />
           <FormControl.Feedback />
         </FormGroup>
@@ -55,7 +29,7 @@ export default class EmployeeForm extends Component {
             type="text"
             value={lastName}
             placeholder="Last Name"
-            onChange={this.lastNameChange.bind(this)}
+            onChange={this.lastNameChange}
           />
           <FormControl.Feedback />
         </FormGroup>
@@ -63,6 +37,26 @@ export default class EmployeeForm extends Component {
           Done
         </Button>
       </div>
+    );
+  }
+
+  firstNameChange = (e) => {
+    this.setState(
+      Object.assign(
+        {},
+        this.state,
+        { firstName: e.target.value }
+      )
+    );
+  }
+
+  lastNameChange = (e) => {
+    this.setState(
+      Object.assign(
+        {},
+        this.state,
+        {lastName: e.target.value}
+      )
     );
   }
 }
