@@ -26,14 +26,11 @@ const SHOW_ADD_REVIEW = 'SHOW_ADD_REVIEW';
 // can be 'injected' via props. It contains all components for the admin view.
 // This class probably has too many responsibilities and should be split.
 export default class AdminBody extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      showAdd: false,
-      selectedEmployeeId: null,
-      toolbarShow: null
-    };
+  state = {
+    showAdd: false,
+    selectedEmployeeId: null,
+    toolbarShow: null
   }
 
   render() {
@@ -50,8 +47,8 @@ export default class AdminBody extends Component {
               <EmployeeList
                 employees={employees}
                 selectedId={this.state.selectedEmployeeId}
-                onClickAdd={this._addEmployeeHandler.bind(this)}
-                onClickEmployee={this._selectEmployeeHandler.bind(this)}
+                onClickAdd={this._addEmployeeHandler}
+                onClickEmployee={this._selectEmployeeHandler}
               />
             </Col>
             <Col md={5}>
@@ -215,7 +212,7 @@ export default class AdminBody extends Component {
   }
 
   // handles when the 'add employee' button is pressed
-  _addEmployeeHandler() {
+  _addEmployeeHandler = () => {
     this.setState(
       Object.assign(
         {},
@@ -229,7 +226,7 @@ export default class AdminBody extends Component {
   }
 
   // handles when an employee is selected. It needs the employee Id passed to it
-  _selectEmployeeHandler(employeeId) {
+  _selectEmployeeHandler = (employeeId) => {
     this.setState(
       Object.assign(
         {},
