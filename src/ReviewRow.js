@@ -5,13 +5,9 @@ import './App.css';
 import ReviewForm from './ReviewForm';
 
 export default class ReviewRow extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      editing: false
-    };
-  }
+  state = {
+    editing: false
+  };
 
   render() {
     const {
@@ -37,7 +33,7 @@ export default class ReviewRow extends Component {
           <ReviewForm
             grade={grade}
             notes={notes}
-            onDone={this._editHandler.bind(this)}
+            onDone={this._editHandler}
           />
         </ListGroupItem>
 
@@ -75,17 +71,17 @@ export default class ReviewRow extends Component {
     );
   }
 
-  _editHandler(grade, notes) {
+  _editHandler = (grade, notes) => {
     const {onEdit} = this.props;
     onEdit(grade, notes);
     this.setState(Object.assign({}, this.state, {editing: false}));
   }
 
-  _onClickEditHandler() {
+  _onClickEditHandler = () => {
     this.setState({editing: true});
   }
 
-  _onClickCancelHandler() {
+  _onClickCancelHandler = () => {
     this.setState({editing: false});
   }
 }

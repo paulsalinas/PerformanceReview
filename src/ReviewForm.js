@@ -4,15 +4,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
 export default class ReviewForm extends Component {
-  constructor(props) {
-    super(props);
-    const { grade, notes } = this.props;
-
-    this.state = {
-      grade: grade ? grade : 'Met Expectations',
-      notes: notes ? notes : ''
-    }
-  }
+  state = {
+    grade: this.props.grade ? this.props.grade : 'Met Expectations',
+    notes: this.props.notes ? this.props.notes : ''
+  };
 
   render() {
     const { onDone } = this.props;
@@ -25,7 +20,7 @@ export default class ReviewForm extends Component {
             value={grade}
             componentClass="select"
             placeholder="Grade"
-            onChange={this._gradeChange.bind(this)}
+            onChange={this._gradeChange}
           >
             <option value="Met Expectations">Met Expectations</option>
             <option value="Exceeded Expectations">Exceeded Expectations</option>
@@ -37,7 +32,7 @@ export default class ReviewForm extends Component {
             value={notes}
             componentClass="textarea"
             placeholder="Enter Notes Here"
-            onChange={this._reviewChange.bind(this)}
+            onChange={this._reviewChange}
           />
         </FormGroup>
         <Button onClick={(e) => onDone(grade, notes)}>Done</Button>
@@ -45,7 +40,7 @@ export default class ReviewForm extends Component {
     );
   }
 
-  _reviewChange(e) {
+  _reviewChange = (e) => {
     this.setState(
       Object.assign(
         {},
@@ -55,7 +50,7 @@ export default class ReviewForm extends Component {
     );
   }
 
-  _gradeChange(e) {
+  _gradeChange = (e) => {
     this.setState(
       Object.assign(
         {},

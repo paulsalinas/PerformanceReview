@@ -15,7 +15,7 @@ export default class LoginRemoteContainer extends Component {
   render() {
     return(
       <Panel style={{ width: 500 }}>
-        <EmployeeForm onDone={this._onSubmit.bind(this)}/>
+        <EmployeeForm onDone={this._onSubmit}/>
       </Panel>
     );
   }
@@ -24,7 +24,7 @@ export default class LoginRemoteContainer extends Component {
      return `${EMPLOYEE_URL}?${encodeURI('where=' + JSON.stringify({firstName, lastName}))}`
   }
 
-  _onSubmit(firstName, lastName) {
+  _onSubmit = (firstName, lastName) => {
     var myHeaders = new Headers({'X-Parse-Application-Id': APPLICATION_ID });
 
     var options = {

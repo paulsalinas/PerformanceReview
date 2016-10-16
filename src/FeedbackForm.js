@@ -6,25 +6,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 // this will prompt the user to put in their feedback.
 // when there's feedback, the user can go back and edit it.
 export default class FeedbackForm extends Component {
-  constructor(props) {
-    super(props);
-
-    const {review} = props;
-
-    this.state = {
-      feedback: review.feedback ? review.feedback : '',
-      editing: review.feedback === undefined
-    }
-  }
-
-  _feedbackChangeHandler(e) {
-    this.setState(
-      Object.assign(
-        {},
-        this.state,
-        {feedback: e.target.value}
-      )
-    );
+  state = {
+    feedback: this.props.review.feedback ? this.props.review.feedback : '',
+    editing: this.props.review.feedback === undefined
   }
 
   render() {
@@ -46,7 +30,9 @@ export default class FeedbackForm extends Component {
         <h4>
           {grade}
         </h4>
-        <p>{notes}</p>
+        <p>
+          {notes}
+        </p>
         {
           editing ?
             <div>
@@ -55,7 +41,7 @@ export default class FeedbackForm extends Component {
                   value={feedback}
                   componentClass="textarea"
                   placeholder="What's your feedback?"
-                  onChange={this._feedbackChangeHandler.bind(this)}
+                  onChange={this._feedbackChangeHandler}
                 />
               </FormGroup>
               <Button onClick={onDoneHandler}>
@@ -75,4 +61,13 @@ export default class FeedbackForm extends Component {
     );
   }
 
+  _feedbackChangeHandler = (e) => {
+    this.setState(
+      Object.assign(
+        {},
+        this.state,
+        {feedback: e.target.value}
+      )
+    );
+  }
 }
