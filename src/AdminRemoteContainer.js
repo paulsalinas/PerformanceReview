@@ -9,16 +9,12 @@ const APPLICATION_ID = 'performanceReview';
 // in charge of injecting 'remote' behavior to the presentational components.
 // the behaviors interact with a remote datasource for persistence
 export default class AdminRemoteContainer extends Component {
-  constructor(props) {
-    super(props);
 
-    this.header = new Headers({'X-Parse-Application-Id': APPLICATION_ID });
-
-    this.state = {
-      employees: [],
-      reviews: []
-    }
-  }
+  header = new Headers({'X-Parse-Application-Id': APPLICATION_ID });
+  state = {
+    employees: [],
+    reviews: []
+  };
 
   componentDidMount() {
     var options = {
@@ -49,16 +45,16 @@ export default class AdminRemoteContainer extends Component {
         <AdminBody
           employees={employees}
           reviews={reviews}
-          onAddEmployee={this._addEmployee.bind(this)}
-          onUpdateEmployee={this._updateEmployee.bind(this)}
-          onDeleteEmployee={this._deleteEmployee.bind(this)}
-          onAddReview={this._addReview.bind(this)}
-          onUpdateReview={this._updateReview.bind(this)}
+          onAddEmployee={this._addEmployee}
+          onUpdateEmployee={this._updateEmployee}
+          onDeleteEmployee={this._deleteEmployee}
+          onAddReview={this._addReview}
+          onUpdateReview={this._updateReview}
         />
     );
   }
 
-  _updateEmployee(objectId, firstName, lastName) {
+  _updateEmployee = (objectId, firstName, lastName) => {
     var options = {
       method: 'PUT',
       headers: this.header,
@@ -89,7 +85,7 @@ export default class AdminRemoteContainer extends Component {
     );
   }
 
-  _deleteEmployee(objectId) {
+  _deleteEmployee = (objectId) => {
     var options = {
       method: 'DELETE',
       headers: this.header
@@ -111,7 +107,7 @@ export default class AdminRemoteContainer extends Component {
     );
   }
 
-  _addEmployee(firstName, lastName) {
+  _addEmployee = (firstName, lastName) => {
     var options = {
       method: 'POST',
       headers: this.header,
@@ -140,7 +136,7 @@ export default class AdminRemoteContainer extends Component {
     );
   }
 
-  _updateReview(objectId, grade, notes) {
+  _updateReview = (objectId, grade, notes) => {
     var options = {
       method: 'PUT',
       headers: this.header,
@@ -171,7 +167,7 @@ export default class AdminRemoteContainer extends Component {
       );
   }
 
-  _addReview(grade, notes, employeeId) {
+  _addReview = (grade, notes, employeeId) => {
     var options = {
       method: 'POST',
       headers: this.header,
