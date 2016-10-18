@@ -41,22 +41,16 @@ export default class EmployeeForm extends Component {
   }
 
   firstNameChange = (e) => {
-    this.setState(
-      Object.assign(
-        {},
-        this.state,
-        { firstName: e.target.value }
-      )
-    );
+    this.setState({
+      ...this.state,
+      firstName: e.target.value
+    });
   }
 
   lastNameChange = (e) => {
-    this.setState(
-      Object.assign(
-        {},
-        this.state,
-        {lastName: e.target.value}
-      )
-    );
+    this.setState({
+      ...this.state,
+      lastName: e.target.value
+    });
   }
 }

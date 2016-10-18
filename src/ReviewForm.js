@@ -41,22 +41,16 @@ export default class ReviewForm extends Component {
   }
 
   _reviewChange = (e) => {
-    this.setState(
-      Object.assign(
-        {},
-        this.state,
-        { notes: e.target.value }
-      )
-    );
+    this.setState({
+      ...this.state,
+      notes: e.target.value
+    });
   }
 
   _gradeChange = (e) => {
-    this.setState(
-      Object.assign(
-        {},
-        this.state,
-        { grade: e.target.value }
-      )
-    );
+    this.setState({
+      ...this.state,
+      grade: e.target.value
+    });
   }
 }

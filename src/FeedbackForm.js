@@ -18,11 +18,11 @@ export default class FeedbackForm extends Component {
 
     const onDoneHandler = () => {
       onDone(feedback);
-      this.setState(Object.assign({}, this.state, {editing: false}))
+      this.setState({...this.state, editing: false});
     };
 
     const onEditHandler = () => {
-      this.setState(Object.assign({}, this.state, {editing: true}));
+      this.setState({...this.state, editing: true});
     };
 
     return(
@@ -62,12 +62,9 @@ export default class FeedbackForm extends Component {
   }
 
   _feedbackChangeHandler = (e) => {
-    this.setState(
-      Object.assign(
-        {},
-        this.state,
-        {feedback: e.target.value}
-      )
-    );
+    this.setState({
+      ...this.state,
+      feedback: e.target.value
+    });
   }
 }

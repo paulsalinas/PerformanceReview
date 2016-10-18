@@ -96,7 +96,7 @@ export default class AdminBody extends Component {
 
     const deleteHandler = (e) => {
       onDeleteEmployee(selectedEmployeeId)
-      this.setState(Object.assign({}, this.state, { selectedEmployeeId: null }));
+      this.setState({...this.state, selectedEmployeeId: null });
     };
 
     return (
@@ -196,47 +196,31 @@ export default class AdminBody extends Component {
   // This allows us to clear the toolBarState if the same button is pressed
   // consecutively
   _setToolBarState(toolBarState) {
-    this.setState(
-      Object.assign(
-        {},
-        this.state,
-        {
-          toolbarShow:
-            this.state.toolbarShow === toolBarState ?
-            null
-            :
-            toolBarState
-        }
-      )
-    );
+    this.setState({
+      ...this.state,
+      toolbarShow: this.state.toolbarShow === toolBarState ?
+      null
+      :
+      toolBarState
+    });
   }
 
   // handles when the 'add employee' button is pressed
   _addEmployeeHandler = () => {
-    this.setState(
-      Object.assign(
-        {},
-        this.state,
-        {
-          showAdd: true,
-          selectedEmployeeId: null
-        }
-      )
-    );
+    this.setState({
+      ...this.state,
+      showAdd: true,
+      selectedEmployeeId: null
+    });
   }
 
   // handles when an employee is selected. It needs the employee Id passed to it
   _selectEmployeeHandler = (employeeId) => {
-    this.setState(
-      Object.assign(
-        {},
-        this.state,
-        {
-          showAdd: false,
-          selectedEmployeeId: employeeId,
-          toolbarShow: null
-        }
-      )
-    );
+    this.setState({
+      ...this.state,
+      showAdd: false,
+      selectedEmployeeId: employeeId,
+      toolbarShow: null
+    });
   }
 }

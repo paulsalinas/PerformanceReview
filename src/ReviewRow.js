@@ -74,7 +74,7 @@ export default class ReviewRow extends Component {
   _editHandler = (grade, notes) => {
     const {onEdit} = this.props;
     onEdit(grade, notes);
-    this.setState(Object.assign({}, this.state, {editing: false}));
+    this.setState({...this.state, editing: false});
   }
 
   _onClickEditHandler = () => {

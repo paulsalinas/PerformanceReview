@@ -30,9 +30,10 @@ export default class FeedbackRemoteContainer extends Component {
     fetch(uri, options)
       .then((response) => response.json())
       .then((data) =>
-        this.setState(
-          Object.assign({}, this.state, {reviews: data.results})
-        )
+        this.setState({
+          ...this.state,
+          reviews: data.results
+        })
       )
   }
 
@@ -77,21 +78,16 @@ export default class FeedbackRemoteContainer extends Component {
     fetch(`${REVIEW_URL}/${objectId}`, options)
       .then((response) => response.json())
       .then((data) =>
-        this.setState(
-          Object.assign(
-            {},
-            this.state,
-            {
-              reviews: this.state.reviews
-                .map((review) =>
-                  review.objectId === objectId ?
-                  Object.assign({}, review, {feedback})
-                  :
-                  review
-                )
-            }
-         )
-        )
+        this.setState({
+          ...this.state,
+          reviews: this.state.reviews
+            .map((review) =>
+              review.objectId === objectId ?
+              {...review, feedback}
+              :
+              review
+            )
+        })
       );
   }
 }

@@ -14,7 +14,7 @@ export default class AdminRemoteContainer extends Component {
   state = {
     employees: [],
     reviews: []
-  };
+  }
 
   componentDidMount() {
     var options = {
@@ -25,17 +25,19 @@ export default class AdminRemoteContainer extends Component {
     fetch(EMPLOYEE_URL, options)
       .then((response) => response.json())
       .then((data) =>
-        this.setState(
-          Object.assign({}, this.state, {employees: data.results})
-        )
+        this.setState({
+          ...this.state,
+          employees: data.results
+        })
       )
 
     fetch(REVIEW_URL, options)
       .then((response) => response.json())
       .then((data) =>
-        this.setState(
-          Object.assign({}, this.state, {reviews: data.results})
-        )
+        this.setState({
+          ...this.state,
+          reviews: data.results
+        })
       )
   }
 
@@ -67,21 +69,16 @@ export default class AdminRemoteContainer extends Component {
     fetch(`${EMPLOYEE_URL}/${objectId}`, options)
       .then((response) => response.json())
       .then((data) =>
-        this.setState(
-          Object.assign(
-            {},
-            this.state,
-            {
-              employees: this.state.employees
-                .map((employee) =>
-                  employee.objectId === objectId ?
-                  {objectId, firstName, lastName}
-                  :
-                  employee
-                )
-           }
-        )
-      )
+        this.setState({
+          ...this.state,
+          employees: this.state.employees
+            .map((employee) =>
+              employee.objectId === objectId ?
+              {objectId, firstName, lastName}
+              :
+              employee
+            )
+      })
     );
   }
 
@@ -94,17 +91,12 @@ export default class AdminRemoteContainer extends Component {
     fetch(`${EMPLOYEE_URL}/${objectId}`, options)
       .then((response) => response.json())
       .then((data) =>
-        this.setState(
-          Object.assign(
-            {},
-            this.state,
-            {
-              employees: this.state.employees
-                .filter((employee) => employee.objectId !== objectId)
-           }
-        )
-      )
-    );
+        this.setState({
+          ...this.state,
+            employees: this.state.employees
+              .filter((employee) => employee.objectId !== objectId)
+        })
+      );
   }
 
   _addEmployee = (firstName, lastName) => {
@@ -120,19 +112,17 @@ export default class AdminRemoteContainer extends Component {
     fetch(EMPLOYEE_URL, options)
       .then((response) => response.json())
       .then((data) =>
-        this.setState(
-          Object.assign(
-            {},
-            this.state,
+        this.setState({
+          ...this.state,
+          employees: [
+            ...this.state.employees,
             {
-              employees: this.state.employees.concat({
-                objectId: data.objectId,
-                firstName,
-                lastName
-              })
-           }
-        )
-      )
+              objectId: data.objectId,
+              firstName,
+              lastName
+            }
+          ]
+      })
     );
   }
 
@@ -149,21 +139,16 @@ export default class AdminRemoteContainer extends Component {
     fetch(`${REVIEW_URL}/${objectId}`, options)
       .then((response) => response.json())
       .then((data) =>
-        this.setState(
-          Object.assign(
-            {},
-            this.state,
-            {
-              reviews: this.state.reviews
-                .map((review) =>
-                  review.objectId === objectId ?
-                  Object.assign({}, review, {grade, notes})
-                  :
-                  review
-                )
-            }
-         )
-        )
+        this.setState({
+          ...this.state,
+          reviews: this.state.reviews
+            .map((review) =>
+              review.objectId === objectId ?
+              {...review, grade, notes}
+              :
+              review
+            )
+        })
       );
   }
 
@@ -181,20 +166,18 @@ export default class AdminRemoteContainer extends Component {
     fetch(REVIEW_URL, options)
       .then((response) => response.json())
       .then((data) =>
-        this.setState(
-          Object.assign(
-            {},
-            this.state,
+        this.setState({
+          ...this.state,
+          reviews: [
+            ...this.state.reviews,
             {
-              reviews: this.state.reviews.concat({
-                objectId: data.objectId,
-                grade,
-                notes,
-                employeeId
-              })
-           }
-        )
-      )
-    );
+              objectId: data.objectId,
+              grade,
+              notes,
+              employeeId
+            }
+          ]
+        })
+      );
   }
 }
