@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
-import { FormGroup, FormControl,Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
-import './App.css';
+import React, { Component } from "react";
+import { FormGroup, FormControl, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.css";
+import "./App.css";
 
 export default class ReviewForm extends Component {
   state = {
-    grade: this.props.grade ? this.props.grade : 'Met Expectations',
-    notes: this.props.notes ? this.props.notes : ''
+    grade: this.props.grade ? this.props.grade : "Met Expectations",
+    notes: this.props.notes ? this.props.notes : ""
   };
 
   render() {
     const { onDone } = this.props;
     const { grade, notes } = this.state;
 
-    return(
+    return (
       <div>
         <FormGroup controlId="Grade">
           <FormControl
@@ -27,7 +27,7 @@ export default class ReviewForm extends Component {
             <option value="Failed Expectations">Failed Expectations</option>
           </FormControl>
         </FormGroup>
-        <FormGroup controlId="Notes" >
+        <FormGroup controlId="Notes">
           <FormControl
             value={notes}
             componentClass="textarea"
@@ -35,22 +35,20 @@ export default class ReviewForm extends Component {
             onChange={this._reviewChange}
           />
         </FormGroup>
-        <Button onClick={(e) => onDone(grade, notes)}>Done</Button>
+        <Button onClick={e => onDone(grade, notes)}>Done</Button>
       </div>
     );
   }
 
-  _reviewChange = (e) => {
+  _reviewChange = e => {
     this.setState({
-      ...this.state,
       notes: e.target.value
     });
-  }
+  };
 
-  _gradeChange = (e) => {
+  _gradeChange = e => {
     this.setState({
-      ...this.state,
       grade: e.target.value
     });
-  }
+  };
 }

@@ -26,7 +26,6 @@ export default class AdminRemoteContainer extends Component {
       .then((response) => response.json())
       .then((data) =>
         this.setState({
-          ...this.state,
           employees: data.results
         })
       )
@@ -35,7 +34,6 @@ export default class AdminRemoteContainer extends Component {
       .then((response) => response.json())
       .then((data) =>
         this.setState({
-          ...this.state,
           reviews: data.results
         })
       )
@@ -66,11 +64,10 @@ export default class AdminRemoteContainer extends Component {
       })
     };
 
-    fetch(`${EMPLOYEE_URL}/${objectId}`, options)
+    return fetch(`${EMPLOYEE_URL}/${objectId}`, options)
       .then((response) => response.json())
       .then((data) =>
         this.setState({
-          ...this.state,
           employees: this.state.employees
             .map((employee) =>
               employee.objectId === objectId ?
@@ -88,11 +85,10 @@ export default class AdminRemoteContainer extends Component {
       headers: this.header
     };
 
-    fetch(`${EMPLOYEE_URL}/${objectId}`, options)
+    return fetch(`${EMPLOYEE_URL}/${objectId}`, options)
       .then((response) => response.json())
       .then((data) =>
         this.setState({
-          ...this.state,
             employees: this.state.employees
               .filter((employee) => employee.objectId !== objectId)
         })
@@ -109,20 +105,21 @@ export default class AdminRemoteContainer extends Component {
       })
     };
 
-    fetch(EMPLOYEE_URL, options)
+    return fetch(EMPLOYEE_URL, options)
       .then((response) => response.json())
       .then((data) =>
-        this.setState({
-          ...this.state,
-          employees: [
-            ...this.state.employees,
-            {
-              objectId: data.objectId,
-              firstName,
-              lastName
-            }
-          ]
-      })
+        this.setState(
+          (state) => ({
+            employees: [
+              ...state.employees,
+              {
+                objectId: data.objectId,
+                firstName,
+                lastName
+              }
+            ]
+        })
+      )
     );
   }
 
@@ -136,19 +133,19 @@ export default class AdminRemoteContainer extends Component {
       })
     };
 
-    fetch(`${REVIEW_URL}/${objectId}`, options)
+    return fetch(`${REVIEW_URL}/${objectId}`, options)
       .then((response) => response.json())
       .then((data) =>
-        this.setState({
-          ...this.state,
-          reviews: this.state.reviews
+        this.setState((state) => ({
+          reviews: state.reviews
             .map((review) =>
               review.objectId === objectId ?
               {...review, grade, notes}
               :
               review
             )
-        })
+          })
+        )
       );
   }
 
@@ -163,13 +160,12 @@ export default class AdminRemoteContainer extends Component {
       })
     };
 
-    fetch(REVIEW_URL, options)
+    return fetch(REVIEW_URL, options)
       .then((response) => response.json())
       .then((data) =>
-        this.setState({
-          ...this.state,
+        this.setState((state) => ({
           reviews: [
-            ...this.state.reviews,
+            ...state.reviews,
             {
               objectId: data.objectId,
               grade,
@@ -178,6 +174,7 @@ export default class AdminRemoteContainer extends Component {
             }
           ]
         })
+        )
       );
   }
 }

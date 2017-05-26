@@ -96,7 +96,7 @@ export default class AdminBody extends Component {
 
     const deleteHandler = (e) => {
       onDeleteEmployee(selectedEmployeeId)
-      this.setState({...this.state, selectedEmployeeId: null });
+      this.setState({ selectedEmployeeId: null });
     };
 
     return (
@@ -197,18 +197,16 @@ export default class AdminBody extends Component {
   // consecutively
   _setToolBarState(toolBarState) {
     this.setState({
-      ...this.state,
       toolbarShow: this.state.toolbarShow === toolBarState ?
-      null
-      :
-      toolBarState
+        null
+        :
+        toolBarState
     });
   }
 
   // handles when the 'add employee' button is pressed
   _addEmployeeHandler = () => {
     this.setState({
-      ...this.state,
       showAdd: true,
       selectedEmployeeId: null
     });
@@ -217,7 +215,6 @@ export default class AdminBody extends Component {
   // handles when an employee is selected. It needs the employee Id passed to it
   _selectEmployeeHandler = (employeeId) => {
     this.setState({
-      ...this.state,
       showAdd: false,
       selectedEmployeeId: employeeId,
       toolbarShow: null

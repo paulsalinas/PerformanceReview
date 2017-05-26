@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import { FormGroup, FormControl, Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
-import './App.css';
+import React, { Component } from "react";
+import { FormGroup, FormControl, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.css";
+import "./App.css";
 
 export default class EmployeeForm extends Component {
   state = {
-    firstName: this.props.firstName ? this.props.firstName : '',
-    lastName: this.props.lastName ? this.props.lastName : ''
+    firstName: this.props.firstName ? this.props.firstName : "",
+    lastName: this.props.lastName ? this.props.lastName : ""
   };
 
   render() {
-    const {onDone} = this.props;
-    const {firstName, lastName} = this.state;
+    const { onDone } = this.props;
+    const { firstName, lastName } = this.state;
 
-    return(
+    return (
       <div>
-        <FormGroup controlId="firstName" >
+        <FormGroup controlId="firstName">
           <FormControl
             type="text"
             value={firstName}
@@ -24,7 +24,7 @@ export default class EmployeeForm extends Component {
           />
           <FormControl.Feedback />
         </FormGroup>
-        <FormGroup controlId="lastName" >
+        <FormGroup controlId="lastName">
           <FormControl
             type="text"
             value={lastName}
@@ -33,24 +33,22 @@ export default class EmployeeForm extends Component {
           />
           <FormControl.Feedback />
         </FormGroup>
-        <Button onClick={(e) => onDone(firstName, lastName)}>
+        <Button onClick={e => onDone(firstName, lastName)}>
           Done
         </Button>
       </div>
     );
   }
 
-  firstNameChange = (e) => {
+  firstNameChange = e => {
     this.setState({
-      ...this.state,
       firstName: e.target.value
     });
-  }
+  };
 
-  lastNameChange = (e) => {
+  lastNameChange = e => {
     this.setState({
-      ...this.state,
       lastName: e.target.value
     });
-  }
+  };
 }

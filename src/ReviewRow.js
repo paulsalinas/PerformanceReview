@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { ListGroupItem, Glyphicon, Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
-import './App.css';
-import ReviewForm from './ReviewForm';
+import React, { Component } from "react";
+import { ListGroupItem, Glyphicon, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.css";
+import "./App.css";
+import ReviewForm from "./ReviewForm";
 
 export default class ReviewRow extends Component {
   state = {
@@ -10,40 +10,25 @@ export default class ReviewRow extends Component {
   };
 
   render() {
-    const {
-      grade,
-      notes,
-      feedback,
-      employee,
-    } = this.props.review;
+    const { grade, notes, feedback, employee } = this.props.review;
 
-    const {editing} = this.state;
+    const { editing } = this.state;
 
-    return (
-
-        editing ?
-
-        <ListGroupItem>
+    return editing
+      ? <ListGroupItem>
           <Button
-            style={{marginLeft: 5, marginBottom: 10}}
+            style={{ marginLeft: 5, marginBottom: 10 }}
             onClick={() => this._onClickCancelHandler()}
           >
             <Glyphicon glyph="menu-left" />
           </Button>
-          <ReviewForm
-            grade={grade}
-            notes={notes}
-            onDone={this._editHandler}
-          />
+          <ReviewForm grade={grade} notes={notes} onDone={this._editHandler} />
         </ListGroupItem>
-
-        :
-
-        <ListGroupItem>
+      : <ListGroupItem>
           <h4>
             {grade}
             <Button
-              style={{marginLeft: 5}}
+              style={{ marginLeft: 5 }}
               onClick={() => this._onClickEditHandler()}
             >
               <Glyphicon glyph="pencil" />
@@ -52,36 +37,29 @@ export default class ReviewRow extends Component {
 
           <p>{notes}</p>
 
-          {
-
-            feedback ?
-              <p>
-                <span style={{fontWeight: 'bold'}}>
-                  {employee.lastName + ', ' + employee.firstName + ': '}
+          {feedback
+            ? <p>
+                <span style={{ fontWeight: "bold" }}>
+                  {employee.lastName + ", " + employee.firstName + ": "}
                 </span>
                 {feedback}
               </p>
+            : null}
 
-            :
-
-            null
-          }
-
-        </ListGroupItem>
-    );
+        </ListGroupItem>;
   }
 
   _editHandler = (grade, notes) => {
-    const {onEdit} = this.props;
+    const { onEdit } = this.props;
     onEdit(grade, notes);
-    this.setState({...this.state, editing: false});
-  }
+    this.setState({ editing: false });
+  };
 
   _onClickEditHandler = () => {
-    this.setState({editing: true});
-  }
+    this.setState({ editing: true });
+  };
 
   _onClickCancelHandler = () => {
-    this.setState({editing: false});
-  }
+    this.setState({ editing: false });
+  };
 }
